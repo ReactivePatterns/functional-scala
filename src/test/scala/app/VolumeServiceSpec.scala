@@ -8,7 +8,7 @@ import _root_.util.{Right, Left}
 
 class VolumeServiceSpec extends WordSpec with ShouldMatchers {
 
-  "for comprehension" in {
+  "sequence" in {
     val result = for {
       _ <- AlexaVolumeService.set("7")
       _ <- AlexaVolumeService.louder()
