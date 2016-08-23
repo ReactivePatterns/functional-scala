@@ -22,7 +22,7 @@ object AlexaVolumeService extends VolumeService[String, AlexaVolume] {
   def process[A](thunk: => A, sideEffect: A => Unit, message: String): Try[A] = {
     val t = Try { thunk }
     t.foreach(sideEffect)
-    t.transform(v => Success(v), t => Failure(new Error(message)))
+    if (t.isFailure) t.transform(v => Success(v), t => Failure(new Error(message))) else t
   }
 
   override def set(level: String): Try[AlexaVolume] = {
