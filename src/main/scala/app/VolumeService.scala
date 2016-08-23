@@ -22,9 +22,7 @@ object AlexaVolumeService extends VolumeService[String, AlexaVolume] {
 
   val up: Int => AlexaVolume = { l => AlexaVolumes(l + 1)}
   val down: Int => AlexaVolume = { l => AlexaVolumes(l - 1)}
-
-
-
+  
   override def set(level: String): Either[String, AlexaVolume] = {
     val vol: Either[String, AlexaVolume] = Try { AlexaVolumes(level.toInt) }
     vol match {
