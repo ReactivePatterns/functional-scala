@@ -3,8 +3,10 @@ package app
 import alexa.AlexaVolumes
 import org.scalatest.{WordSpec, _}
 
-import scala.{Either => _, Right => _, Left => _, _}
-import _root_.util.{Right, Left}
+import scala.{Either => _, Left => _, Right => _, _}
+import _root_.util.{Left, Right}
+
+import scala.util.Success
 
 class VolumeServiceSpec extends WordSpec with ShouldMatchers {
 
@@ -16,13 +18,13 @@ class VolumeServiceSpec extends WordSpec with ShouldMatchers {
       end <- AlexaVolumeService.lower()
     } yield end
 
-    result shouldBe Right(AlexaVolumes(6))
+    result.get shouldBe AlexaVolumes(6)
   }
 
   "not an int" in {
     val result = AlexaVolumeService.set("7.5")
 
-    result shouldBe Left("The volume must be a whole number between 0 and 10")
+    result.failed.get.getMessage shouldBe "The volume must be a whole number between 0 and 10"
   }
 
   "cannot go higher" in {
@@ -31,7 +33,7 @@ class VolumeServiceSpec extends WordSpec with ShouldMatchers {
       end <- AlexaVolumeService.louder()
     } yield end
 
-    result shouldBe Left("Cannot go higher")
+    result.failed.get.getMessage shouldBe "Cannot go higher"
   }
 
   "cannot go lower" in {
@@ -40,7 +42,7 @@ class VolumeServiceSpec extends WordSpec with ShouldMatchers {
       end <- AlexaVolumeService.lower()
     } yield end
 
-    result shouldBe Left("Cannot go lower")
+    result.failed.get.getMessage shouldBe "Cannot go lower"
   }
 
 
