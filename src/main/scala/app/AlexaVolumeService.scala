@@ -1,14 +1,9 @@
 package app
 
 import alexa.{AlexaVolume, AlexaVolumes, Volume}
+import Constants._
 
-import scala.util.{Try, Failure, Success}
-
-trait VolumeService[L, V <: Volume[_]] {
-  def set(level: L): Try[V]
-  def louder(): Try[V]
-  def lower(): Try[V]
-}
+import scala.util.{Failure, Success, Try}
 
 object AlexaVolumeService extends VolumeService[String, AlexaVolume] {
 
@@ -26,17 +21,14 @@ object AlexaVolumeService extends VolumeService[String, AlexaVolume] {
   }
 
   override def set(level: String): Try[AlexaVolume] = {
-    process[AlexaVolume]({ AlexaVolumes(level.toInt) }, state_=,
-      "The volume must be a whole number between 0 and 10")
+    process[AlexaVolume]({ AlexaVolumes(level.toInt) }, state_=, LevelValidationMessage)
   }
 
   override def louder(): Try[AlexaVolume] = {
-    process[AlexaVolume]({ state.flatMap(up) }, state_=,
-      "Cannot go higher")
+    process[AlexaVolume]({ state.flatMap(up) }, state_=, OverUpperLimitMessage)
   }
 
   override def lower(): Try[AlexaVolume] = {
-    process[AlexaVolume]({ state.flatMap(down) }, state_=,
-      "Cannot go lower")
+    process[AlexaVolume]({ state.flatMap(down) }, state_=, UnderUpperLimitMessage)
   }
 }
