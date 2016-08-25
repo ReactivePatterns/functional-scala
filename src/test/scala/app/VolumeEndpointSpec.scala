@@ -29,10 +29,11 @@ class VolumeEndpointSpec extends WordSpec with ShouldMatchers with ScalatestRout
     }
 
     "respond to a valid up submission" in {
+      Post(s"/volume/set", SetVolume("3")) ~> routes
       Post(s"/volume/up", VolumeUp) ~> routes ~> check {
         status shouldBe OK
         contentType shouldBe `application/json`
-        responseAs[VolumeChanged].change.level shouldBe 8
+        responseAs[VolumeChanged].change.level shouldBe 4
       }
     }
   }
