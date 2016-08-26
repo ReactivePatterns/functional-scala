@@ -1,10 +1,12 @@
 package alexa
 
+import Constants._
+
 sealed trait AlexaVolume extends Volume[Int]
 
 object AlexaVolumes extends Enumeration {
   case class AlexaVolumeVal(level: Int) extends super.Val with AlexaVolume {
-    require(level >=0 && level <= 10, "The volume must be between 0 and 10")
+    require(level >=0 && level <= 10, LevelValidationMessage)
   }
 
   implicit def valueToVolume(v: Value) = v.asInstanceOf[AlexaVolume]

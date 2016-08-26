@@ -1,4 +1,4 @@
-package app
+package alexa
 
 import com.typesafe.config.{Config, ConfigFactory}
 

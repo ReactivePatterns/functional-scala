@@ -1,7 +1,7 @@
 package app
 
 import alexa.{AlexaVolume, AlexaVolumes, Volume}
-import Constants._
+import alexa.Constants._
 
 import scala.util.{Failure, Success, Try}
 

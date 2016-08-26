@@ -4,6 +4,7 @@ import akka.event.NoLogging
 import akka.http.scaladsl.model.ContentTypes._
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.testkit.ScalatestRouteTest
+import alexa.Constants
 import org.scalatest._
 
 class VolumeEndpointSpec extends WordSpec with ShouldMatchers with ScalatestRouteTest with VolumeUserService {
