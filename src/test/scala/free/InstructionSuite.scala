@@ -8,6 +8,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{ShouldMatchers, WordSpec}
 
+import free.functions.InstructionInterpreters._
+import free.functions.InstructionImplicits._
+
 class InstructionSuite extends WordSpec with ShouldMatchers with ScalaFutures {
 
   val f_str = { i: Int => i.toString }
