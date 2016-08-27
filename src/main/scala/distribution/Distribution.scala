@@ -10,13 +10,16 @@ trait Distribution[A] {
   self =>
   protected def get: A
 
-  def map[B](f: A => B): Distribution[B] = new Distribution[B] {
-    override def get = f(self.get)
-  }
+//  def map[B](f: A => B): Distribution[B] = new Distribution[B] {
+//    override def get = f(self.get)
+//  }
 
   def flatMap[B](f: A => Distribution[B]): Distribution[B] = new Distribution[B] {
     override def get = f(self.get).get
   }
+  
+  def map[B](f: A => B): Distribution[B] = flatMap(a => Distribution.unit[B](f(a)))
+
 
   override def toString = "<distribution>"
 
@@ -114,6 +117,10 @@ trait Distribution[A] {
 }
 
 object Distribution {
+
+  def unit[A](a: A): Distribution[A] = new Distribution[A] {
+    override val get: A = a
+}
   private val rand = ThreadLocalRandom.current()
 
   def discreteUniform[A](values: Iterable[A]): Distribution[A] = new Distribution[A] {

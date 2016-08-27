@@ -1,9 +1,7 @@
 package distribution
 
-import distribution.Distribution
 import distribution.Distribution._
 import org.scalatest.WordSpec
-
 
 class MontyHallSpec extends WordSpec {
 
