@@ -8,9 +8,7 @@ import scala.math.BigDecimal
 
 trait Distribution[A] {
   self =>
-  protected[distribution] def get: A
-
-  override def toString = "<distribution>"
+  protected def get: A
 
   def map[B](f: A => B): Distribution[B] = new Distribution[B] {
     override def get = f(self.get)
@@ -19,6 +17,8 @@ trait Distribution[A] {
   def flatMap[B](f: A => Distribution[B]): Distribution[B] = new Distribution[B] {
     override def get = f(self.get).get
   }
+
+  override def toString = "<distribution>"
 
   ///////
   def filter(pred: A => Boolean): Distribution[A] = new Distribution[A] {
