@@ -1,7 +1,7 @@
-package domain.alexa
+package app.domain.alexa
 
-import Constants._
-import domain.Volume
+import app.domain.alexa.Constants._
+import app.domain.Volume
 
 sealed trait AlexaVolume extends Volume[Int]
 

@@ -1,4 +1,4 @@
-package domain
+package app.domain
 
 import scala.util.Try
 

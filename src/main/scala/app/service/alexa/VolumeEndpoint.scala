@@ -1,12 +1,11 @@
 package app.service.alexa
 
-import akka.http.scaladsl.Http
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._
-import domain.alexa.AlexaVolumeBehavior
-import domain.alexa.AlexaVolumes.AlexaVolumeVal
-import app.service.{AkkaHttpMicroservice, HttpService}
+import app.domain.alexa.AlexaVolumeBehavior
+import app.domain.alexa.AlexaVolumes.AlexaVolumeVal
+import app.service.HttpService
 import spray.json.DefaultJsonProtocol
 
 import scala.util.{Failure, Success}

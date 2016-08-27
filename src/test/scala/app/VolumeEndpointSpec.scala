@@ -4,7 +4,7 @@ import akka.event.NoLogging
 import akka.http.scaladsl.model.ContentTypes._
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.testkit.ScalatestRouteTest
-import domain.alexa.Constants._
+import app.domain.alexa.Constants._
 import app.service.alexa._
 import org.scalatest._
 

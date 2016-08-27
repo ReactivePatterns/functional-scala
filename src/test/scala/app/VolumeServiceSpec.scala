@@ -1,8 +1,8 @@
 package app
 
-import domain.alexa.{AlexaVolumeBehavior, AlexaVolumes}
+import app.domain.alexa.{AlexaVolumeBehavior, AlexaVolumes}
 import org.scalatest.{WordSpec, _}
-import domain.alexa.Constants._
+import app.domain.alexa.Constants._
 
 class VolumeServiceSpec extends WordSpec with ShouldMatchers {
 

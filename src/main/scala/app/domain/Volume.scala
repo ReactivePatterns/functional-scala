@@ -1,4 +1,4 @@
-package domain
+package app.domain
 
 trait Volume[A] {
   val level: A

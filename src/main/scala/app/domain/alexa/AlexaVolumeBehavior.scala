@@ -1,7 +1,7 @@
-package domain.alexa
+package app.domain.alexa
 
 import Constants._
-import domain.{Volume, VolumeBehavior}
+import app.domain.{Volume, VolumeBehavior}
 
 import scala.util.{Failure, Success, Try}
 
