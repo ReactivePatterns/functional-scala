@@ -1,4 +1,4 @@
-package alexa
+package domain.alexa
 
 import com.typesafe.config.{Config, ConfigFactory}
 

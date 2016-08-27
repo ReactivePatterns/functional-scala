@@ -1,6 +1,7 @@
-package alexa
+package domain.alexa
 
 import Constants._
+import domain.Volume
 
 sealed trait AlexaVolume extends Volume[Int]
 

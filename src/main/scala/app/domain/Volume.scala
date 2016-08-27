@@ -1,4 +1,4 @@
-package alexa
+package domain
 
 trait Volume[A] {
   val level: A

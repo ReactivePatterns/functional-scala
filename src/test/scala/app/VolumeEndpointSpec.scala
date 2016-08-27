@@ -4,7 +4,8 @@ import akka.event.NoLogging
 import akka.http.scaladsl.model.ContentTypes._
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.testkit.ScalatestRouteTest
-import alexa.Constants
+import domain.alexa.Constants._
+import app.service.alexa._
 import org.scalatest._
 
 class VolumeEndpointSpec extends WordSpec with ShouldMatchers with ScalatestRouteTest with VolumeUserService {
@@ -25,7 +26,7 @@ class VolumeEndpointSpec extends WordSpec with ShouldMatchers with ScalatestRout
       Post(s"/volume/set", SetVolume("7.5")) ~> routes ~> check {
         status shouldBe InternalServerError
         contentType shouldBe `application/json`
-        responseAs[VolumeNotChanged].info shouldBe Constants.LevelValidationMessage
+        responseAs[VolumeNotChanged].info shouldBe LevelValidationMessage
       }
     }
 

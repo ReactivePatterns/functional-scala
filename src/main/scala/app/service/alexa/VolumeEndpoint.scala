@@ -1,10 +1,12 @@
-package app
+package app.service.alexa
 
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._
-import alexa.AlexaVolumes.AlexaVolumeVal
+import domain.alexa.AlexaVolumeBehavior
+import domain.alexa.AlexaVolumes.AlexaVolumeVal
+import app.service.{AkkaHttpMicroservice, HttpService}
 import spray.json.DefaultJsonProtocol
 
 import scala.util.{Failure, Success}
@@ -42,7 +44,7 @@ trait VolumeUserService extends HttpService with Protocols {
       pathPrefix("volume") {
         path("up") {
           (post & entity(as[VolumeUp.type])) { req =>
-            AlexaVolumeService.louder() match {
+            AlexaVolumeBehavior.louder() match {
               case Success(value: AlexaVolumeVal) => complete(OK, VolumeChanged(value))
               case Failure(ex: IllegalArgumentException) => complete(BadRequest -> VolumeNotChanged(ex.getMessage))
               case Failure(ex) => complete(InternalServerError -> VolumeNotChanged(ex.getMessage))
@@ -51,7 +53,7 @@ trait VolumeUserService extends HttpService with Protocols {
         } ~
           path("down") {
             (post & entity(as[VolumeDown.type])) { req =>
-              AlexaVolumeService.lower() match {
+              AlexaVolumeBehavior.lower() match {
                 case Success(value: AlexaVolumeVal) => complete(OK, VolumeChanged(value))
                 case Failure(ex: IllegalArgumentException) => complete(BadRequest -> VolumeNotChanged(ex.getMessage))
                 case Failure(ex) => complete(InternalServerError -> VolumeNotChanged(ex.getMessage))
@@ -60,7 +62,7 @@ trait VolumeUserService extends HttpService with Protocols {
           } ~
           path("set") {
             (post & entity(as[SetVolume])) { req =>
-              AlexaVolumeService.set(req.level) match {
+              AlexaVolumeBehavior.set(req.level) match {
                 case Success(value: AlexaVolumeVal) => complete(OK, VolumeChanged(value))
                 case Failure(ex: IllegalArgumentException) => complete(BadRequest -> VolumeNotChanged(ex.getMessage))
                 case Failure(ex) => complete(InternalServerError -> VolumeNotChanged(ex.getMessage))
@@ -70,10 +72,6 @@ trait VolumeUserService extends HttpService with Protocols {
       }
     }
   }
-}
-
-object Server extends App with AkkaHttpMicroservice with VolumeUserService {
-  Http().bindAndHandle(routes, config.getString("http.interface"), config.getInt("http.port"))
 }
 
 

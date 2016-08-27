@@ -1,4 +1,4 @@
-package app
+package app.service
 
 import akka.actor.ActorSystem
 import akka.event.{Logging, LoggingAdapter}

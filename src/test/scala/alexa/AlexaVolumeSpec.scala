@@ -1,6 +1,7 @@
 package alexa
 
-import alexa.AlexaVolumes.AlexaVolumeVal
+import domain.alexa.{AlexaVolume, AlexaVolumes}
+import domain.alexa.AlexaVolumes.AlexaVolumeVal
 import org.scalatest.{WordSpec, _}
 
 class AlexaVolumeSpec extends WordSpec with ShouldMatchers {
