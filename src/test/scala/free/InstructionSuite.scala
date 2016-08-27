@@ -2,11 +2,11 @@ package free
 
 import cats.free.Free
 import cats.std.future._
+import free.functions.{Instruction, Transformer}
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{ShouldMatchers, WordSpec}
-import InstructionInterpreters._
-import InstructionImplicits._
 
 class InstructionSuite extends WordSpec with ShouldMatchers with ScalaFutures {
 

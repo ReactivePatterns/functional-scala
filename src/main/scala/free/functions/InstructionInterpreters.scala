@@ -1,4 +1,4 @@
-package free
+package free.functions
 
 import cats._
 
