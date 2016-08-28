@@ -21,14 +21,13 @@ class AgentVolumeAPISpec extends WordSpec with ShouldMatchers with ScalaFutures 
     whenReady(futureResult) { result =>
       result shouldBe AlexaVolumes(6)
     }
-
   }
 
   "not an int" in {
     val futureResult = AgentVolumeAPI.set("7.5")
 
     whenReady(futureResult.failed) { result =>
-      result.getCause().getMessage shouldBe LevelValidationMessage
+      result.getCause.getMessage shouldBe LevelValidationMessage
     }
   }
 
@@ -39,7 +38,7 @@ class AgentVolumeAPISpec extends WordSpec with ShouldMatchers with ScalaFutures 
     } yield end
 
     whenReady(futureResult.failed) { result =>
-      result.getCause().getMessage shouldBe OverUpperLimitMessage
+      result.getCause.getMessage shouldBe OverUpperLimitMessage
     }
   }
 
@@ -50,7 +49,7 @@ class AgentVolumeAPISpec extends WordSpec with ShouldMatchers with ScalaFutures 
     } yield end
 
     whenReady(futureResult.failed) { result =>
-      result.getCause().getMessage shouldBe UnderUpperLimitMessage
+      result.getCause.getMessage shouldBe UnderUpperLimitMessage
     }
   }
 

@@ -1,11 +1,6 @@
 package agent
 
 import akka.agent.Agent
-import app.domain.alexa.AlexaVolumes
-import app.domain.free.{FreeVolumeAPI, Interpreters}
-import app.domain.{Volume, VolumeRequest}
-import cats.free.Free
-import cats.std.future._
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{ShouldMatchers, WordSpec}
 

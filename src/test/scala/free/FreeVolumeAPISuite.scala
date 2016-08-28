@@ -1,9 +1,9 @@
 package free
 
 import app.domain.alexa.AlexaVolumes
+import app.domain.alexa.Constants._
 import app.domain.free.{FreeVolumeAPI, Interpreters}
 import app.domain.{Volume, VolumeRequest}
-import app.domain.alexa.Constants._
 import cats.free.Free
 import cats.std.future._
 import org.scalatest.concurrent.ScalaFutures
@@ -15,11 +15,11 @@ class FreeVolumeAPISuite extends WordSpec with ShouldMatchers with ScalaFutures 
 
   "logic" should {
     val logic: Free[VolumeRequest, Volume[_]] = for {
-    _ <- FreeVolumeAPI.set("7")
-    _ <- FreeVolumeAPI.louder()
-    _ <- FreeVolumeAPI.lower()
-    end <- FreeVolumeAPI.lower()
-  } yield end
+      _ <- FreeVolumeAPI.set("7")
+      _ <- FreeVolumeAPI.louder()
+      _ <- FreeVolumeAPI.lower()
+      end <- FreeVolumeAPI.lower()
+    } yield end
 
     "int interpreter" in {
       val result = logic.foldMap(Interpreters.mockInterpreter)

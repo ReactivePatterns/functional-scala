@@ -1,7 +1,6 @@
 package free.functions
 
 import cats._
-
 import scala.concurrent.Future
 
 object InstructionInterpreters {
@@ -26,7 +25,6 @@ object InstructionInterpreters {
     }
   }
 
-
   val logInterpreter = new (Instruction ~> Id) {
     override def apply[A](e: Instruction[A]): Id[A] = e match {
       case Produce(a) => {
@@ -40,5 +38,4 @@ object InstructionInterpreters {
       }
     }
   }
-
 }

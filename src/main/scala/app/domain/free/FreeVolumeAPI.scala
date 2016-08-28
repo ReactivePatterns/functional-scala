@@ -10,9 +10,12 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 object FreeVolumeAPI {
-  def set(level: String): Free[VolumeRequest, Volume[_]] = Free.liftF(SetVolume(level))
-  def louder(): Free[VolumeRequest, Volume[_]] = Free.liftF(VolumeUp)
-  def lower(): Free[VolumeRequest, Volume[_]] = Free.liftF(VolumeDown)
+  def set(level: String): Free[VolumeRequest, Volume[_]] =
+    Free.liftF(SetVolume(level))
+  def louder(): Free[VolumeRequest, Volume[_]] =
+    Free.liftF(VolumeUp)
+  def lower(): Free[VolumeRequest, Volume[_]] =
+    Free.liftF(VolumeDown)
 }
 
 object Interpreters {
