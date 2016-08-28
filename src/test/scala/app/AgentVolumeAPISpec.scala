@@ -6,7 +6,7 @@ import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{ShouldMatchers, WordSpec}
 
 
-class VolumeAgentServiceSpec extends WordSpec with ShouldMatchers with ScalaFutures {
+class AgentVolumeAPISpec extends WordSpec with ShouldMatchers with ScalaFutures {
 
   import scala.concurrent.ExecutionContext.Implicits.global
 

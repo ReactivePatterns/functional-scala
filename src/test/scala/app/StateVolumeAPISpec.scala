@@ -4,7 +4,7 @@ import app.domain.alexa.{StateVolumeAPI, AlexaVolumes}
 import org.scalatest.{WordSpec, _}
 import app.domain.alexa.Constants._
 
-class VolumeServiceSpec extends WordSpec with ShouldMatchers {
+class StateVolumeAPISpec extends WordSpec with ShouldMatchers {
 
   "sequence" in {
     val result = for {
