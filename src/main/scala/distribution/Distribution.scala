@@ -120,7 +120,7 @@ object Distribution {
 
   def unit[A](a: A): Distribution[A] = new Distribution[A] {
     override val get: A = a
-}
+  }
   private val rand = ThreadLocalRandom.current()
 
   def discreteUniform[A](values: Iterable[A]): Distribution[A] = new Distribution[A] {

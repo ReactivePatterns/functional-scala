@@ -5,7 +5,7 @@ import org.scalatest.WordSpec
 
 class DiceSpec extends WordSpec {
 
-  val die = discreteUniform(1 to 6)
+  //val die = discreteUniform(1 to 6)
 
   "sample" in {
     println(die.sample(10))
@@ -14,6 +14,8 @@ class DiceSpec extends WordSpec {
   "throw a 5" in {
     println(die.pr(_ == 5))
   }
+
+  val die = discreteUniform(1 to 6)
 
   val dice = for {
     d1 <- die

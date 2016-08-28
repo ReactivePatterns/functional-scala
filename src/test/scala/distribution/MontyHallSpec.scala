@@ -16,9 +16,12 @@ class MontyHallSpec extends WordSpec {
   }
 
   "monty hall" in {
-    println("WINNING PROBABILITY IF STICKING TO CHOICE : " + montyHall.pr{ case (prize, choice, switch) => prize == choice })
-    println("WINNING PROBABILITY IF SWITCHING: " + montyHall.pr{ case (prize, choice, switch) => prize == switch })
-
+    println("WINNING PROBABILITY IF STICKING TO CHOICE : " +
+      montyHall.pr{ case (prize, choice, switch) => prize == choice }
+    )
+    println("WINNING PROBABILITY IF SWITCHING: " +
+      montyHall.pr{ case (prize, choice, switch) => prize == switch }
+    )
   }
  }
 
