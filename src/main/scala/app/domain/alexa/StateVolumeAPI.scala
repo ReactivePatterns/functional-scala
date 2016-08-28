@@ -1,11 +1,11 @@
 package app.domain.alexa
 
 import Constants._
-import app.domain.{Volume, VolumeBehavior}
+import app.domain.{Volume, VolumeAPI}
 
 import scala.util.{Failure, Success, Try}
 
-object AlexaVolumeBehavior extends VolumeBehavior[String, AlexaVolume] {
+object StateVolumeAPI extends VolumeAPI[String, AlexaVolume] {
 
   implicit def volumeToAlexaVolume(v: Volume[Int]) = v.asInstanceOf[AlexaVolume]
 

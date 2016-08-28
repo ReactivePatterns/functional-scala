@@ -3,22 +3,13 @@ package app.service.alexa
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.StatusCodes._
 import akka.http.scaladsl.server.Directives._
-import app.domain.alexa.AlexaVolumeBehavior
+import app.domain._
+import app.domain.alexa.StateVolumeAPI
 import app.domain.alexa.AlexaVolumes.AlexaVolumeVal
 import app.service.HttpService
 import spray.json.DefaultJsonProtocol
 
 import scala.util.{Failure, Success}
-
-sealed trait VolumeRequest
-case class SetVolume(level: String) extends VolumeRequest
-case object VolumeUp extends VolumeRequest
-case object VolumeDown extends VolumeRequest
-
-
-sealed trait VolumeResponse
-case class VolumeChanged(change: AlexaVolumeVal) extends VolumeResponse
-case class VolumeNotChanged(info: String) extends VolumeResponse
 
 /**
   * Defines the JSON formatter for all our message types to support implicit marshalling/unmarshalling
@@ -43,7 +34,7 @@ trait VolumeUserService extends HttpService with Protocols {
       pathPrefix("volume") {
         path("up") {
           (post & entity(as[VolumeUp.type])) { req =>
-            AlexaVolumeBehavior.louder() match {
+            StateVolumeAPI.louder() match {
               case Success(value: AlexaVolumeVal) => complete(OK, VolumeChanged(value))
               case Failure(ex: IllegalArgumentException) => complete(BadRequest -> VolumeNotChanged(ex.getMessage))
               case Failure(ex) => complete(InternalServerError -> VolumeNotChanged(ex.getMessage))
@@ -52,7 +43,7 @@ trait VolumeUserService extends HttpService with Protocols {
         } ~
           path("down") {
             (post & entity(as[VolumeDown.type])) { req =>
-              AlexaVolumeBehavior.lower() match {
+              StateVolumeAPI.lower() match {
                 case Success(value: AlexaVolumeVal) => complete(OK, VolumeChanged(value))
                 case Failure(ex: IllegalArgumentException) => complete(BadRequest -> VolumeNotChanged(ex.getMessage))
                 case Failure(ex) => complete(InternalServerError -> VolumeNotChanged(ex.getMessage))
@@ -61,7 +52,7 @@ trait VolumeUserService extends HttpService with Protocols {
           } ~
           path("set") {
             (post & entity(as[SetVolume])) { req =>
-              AlexaVolumeBehavior.set(req.level) match {
+              StateVolumeAPI.set(req.level) match {
                 case Success(value: AlexaVolumeVal) => complete(OK, VolumeChanged(value))
                 case Failure(ex: IllegalArgumentException) => complete(BadRequest -> VolumeNotChanged(ex.getMessage))
                 case Failure(ex) => complete(InternalServerError -> VolumeNotChanged(ex.getMessage))
