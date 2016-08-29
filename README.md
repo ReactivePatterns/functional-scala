@@ -53,3 +53,5 @@
 ![ ](./slides/FunctionalScala/FunctionalScala.027.png)
 
 ![ ](./slides/FunctionalScala/FunctionalScala.028.png)
+
+![ ](./slides/FunctionalScala/FunctionalScala.029.png)
