@@ -30,6 +30,6 @@ object AgentVolumeAPI {
   }
 
   def lower(): Future[AlexaVolume] = {
-    lift[AlexaVolume]({ v: AlexaVolume => v.flatMap(down) }, state.alter, UnderUpperLimitMessage)
+    lift[AlexaVolume]({ v: AlexaVolume => v.flatMap(down) }, state.alter, UnderLowerLimitMessage)
   }
 }

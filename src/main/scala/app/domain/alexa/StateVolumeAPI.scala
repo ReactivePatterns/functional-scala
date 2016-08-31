@@ -29,6 +29,6 @@ object StateVolumeAPI extends VolumeAPI[String, AlexaVolume] {
   }
 
   override def lower(): Try[AlexaVolume] = {
-    lift[AlexaVolume]({ state.flatMap(down) }, state_=, UnderUpperLimitMessage)
+    lift[AlexaVolume]({ state.flatMap(down) }, state_=, UnderLowerLimitMessage)
   }
 }

@@ -49,7 +49,7 @@ class AgentVolumeAPISpec extends WordSpec with ShouldMatchers with ScalaFutures 
     } yield end
 
     whenReady(futureResult.failed) { result =>
-      result.getCause.getMessage shouldBe UnderUpperLimitMessage
+      result.getCause.getMessage shouldBe UnderLowerLimitMessage
     }
   }
 

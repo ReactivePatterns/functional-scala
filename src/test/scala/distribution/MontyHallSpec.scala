@@ -11,7 +11,7 @@ class MontyHallSpec extends WordSpec {
       prize <- discreteUniform(doors)   // The prize is placed randomly
       choice <- discreteUniform(doors)  // You choose randomly
       opened <- discreteUniform(doors - prize - choice)   // Monty opens one of the other doors
-      switch <- discreteUniform(doors - choice - opened)  // You switch to the unopened door
+      switch <- Distribution.unit((doors - choice - opened).toList(0)) // You switch to the unopened door
     } yield (prize, choice, switch)
   }
 

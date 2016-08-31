@@ -38,7 +38,7 @@ class StateVolumeAPISpec extends WordSpec with ShouldMatchers {
       end <- StateVolumeAPI.lower()
     } yield end
 
-    result.failed.get.getMessage shouldBe UnderUpperLimitMessage
+    result.failed.get.getMessage shouldBe UnderLowerLimitMessage
   }
 
 
